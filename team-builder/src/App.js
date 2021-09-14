@@ -3,6 +3,12 @@ import './App.css';
 import TeamMemberForm from './components/Form';
 import TeamMember from './components/TeamMember'
 
+const teamMembersList = [
+  { name: 'Casey', email: 'caseyemail', role: 'Designer'},
+  { name: 'Tom', email: 'tomatwhatever', role: 'Front End Engineer'},
+  { name: 'Bob', email: 'bobsemail', role: 'Back End Engineer'}
+]
+
 const initialFormValues = {
   name: '',
   email: '',
@@ -10,7 +16,7 @@ const initialFormValues = {
 }
 
 export default function App() {
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [teamMembers, setTeamMembers] = useState(teamMembersList);
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const updateForm = (inputName, inputValue) => {
@@ -23,7 +29,8 @@ export default function App() {
       email: formValues.email.trim(),
       role: formValues.role
     }
-    setTeamMembers([newTeamMember, ...teamMembers]);
+    setTeamMembers(teamMembers.concat(newTeamMember));
+    setFormValues(initialFormValues);
   }
 
 
